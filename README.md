@@ -1,16 +1,5 @@
-✅ Project overview
 
-⚙️ Setup instructions
-
-🏃‍♂️ Running dev servers (frontend + backend)
-
-🧪 Testing (if applicable)
-
-🌐 Deployment tips
-
-📁 Project structure
-
-## 📘 Project Overview
+## ✅ Project Overview
 
 **What it does:**  
 This app automatically fetches job listings from external XML/RSS feeds (e.g., Jobicy), queues them for background processing, and stores them in MongoDB.
@@ -61,8 +50,54 @@ cd job-importer
 ```
 
 **Configure Environment Variables**
-  ### server
   
+  ### server
+
  - MONGODB_URI='mongodb://127.0.0.1:27017/jobs'
  - CLIENT_URL='http://localhost:3000'
  - PORT=3005
+
+  ### client
+ 
+ - API_URL_HIST_TRACKING_logs = 'http://localhost:3005/api/v1/jobsHistory/import-logs'
+
+**Install Dependencies**
+
+    ```bash
+    # Backend
+    cd server
+    npm install
+
+    # Frontend
+    cd ../client
+    npm install
+    ```
+
+
+**Start Services**
+ ```bash
+    # redis server
+      redis-server
+```
+
+## 🏃‍♂️ Running dev servers (frontend + backend)
+
+
+ ```bash
+    # run backend    
+    cd server
+    npm run dev
+    # run frontend
+    cd ../client
+    npm run dev
+
+```
+
+**📁 Project structure**
+
+JobImporterwithQueueProcessing-HistTracking/
+├── /client # Next.js frontend
+├── /server # Express backend
+├── /docs # Architecture and design decisions                            
+├── README.md # This file
+
