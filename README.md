@@ -51,12 +51,12 @@ cd job-importer
 
 **Configure ⚙️ Environment Variables**
   
-   **server ⚙️.env**
+   **server⚙️.env**
 
  - MONGODB_URI='mongodb://xyz:27017/jobs'
  - CLIENT_URL='http://localhost:3000'
  - PORT=3005
-
+                          
    **client ⚙️ .env**
  
  - API_URL_HIST_TRACKING_logs = 'http://localhost:3005/api/v1/jobsHistory/import-logs'
@@ -95,9 +95,15 @@ cd job-importer
 
 **📁 Project structure**
 
+
+
+ ```bash
+  
 JobImporterwithQueueProcessing-HistTracking/
 ├── /client # Next.js frontend
 ├── /server # Express backend
 ├── /docs # Architecture and design decisions                            
 ├── README.md # This file
 
+
+```
