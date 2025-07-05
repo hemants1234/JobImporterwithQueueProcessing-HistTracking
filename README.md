@@ -93,7 +93,7 @@ cd job-importer
 
 ```
 
-**📁 Project structure**
+## 📁 Project structure
 
 
 
