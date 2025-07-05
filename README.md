@@ -55,21 +55,21 @@
              |           Worker Processor            |
              |  - Insert/update job in MongoDB       |
              |  - Log job result (new/updated/failed)|
-             |  - Collect import metrics             |
+             |                                       |
              +----------------+----------------------+
                                   |
                                   v
                 +----------------+----------------+
                 |     MongoDB (2 collections)     |
-                |  - jobs                         |
-                |  - import_logs                  |
+                |  - job.model                    |
+                |  - importLog.model              |
                 +----------------+----------------+
                                   |
                                   v
                  +-------------------------------+
-                 |   Next.js Admin Dashboard     |
+                 |   Next.js  Dashboard          |
                  |  - View Import History        |
-                 |  - Table of logs (success/fail)|
+                 |  - Table of logs(success/fail)|
                  +-------------------------------+
 
 
