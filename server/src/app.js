@@ -25,4 +25,4 @@ const getHistoryLogs = require('./routes/getHistoryLogs.route.js');
 app.use("/api/v1/jobsHistory", getHistoryLogs)
 
 
-module.exports = app;
+module.exports = {app};

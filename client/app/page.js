@@ -24,7 +24,7 @@ export default function HomePage() {
     loadLogs();
 
     // Setup Socket.IO connection
-    const socket = io("http://localhost:3000"); // Match your Express server
+    const socket = io("http://localhost:3005"); // Match your Express server
 
     socket.on("connect", () => {
       console.log("📡 Connected to Socket.IO server");
