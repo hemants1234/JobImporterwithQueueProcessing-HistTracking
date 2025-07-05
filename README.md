@@ -49,15 +49,15 @@ git clone https://github.com/yourusername/job-importer.git
 cd job-importer
 ```
 
-**Configure Environment Variables**
+**Configure ⚙️ Environment Variables**
   
-  ### server
+   **server ⚙️.env**
 
- - MONGODB_URI='mongodb://127.0.0.1:27017/jobs'
+ - MONGODB_URI='mongodb://xyz:27017/jobs'
  - CLIENT_URL='http://localhost:3000'
  - PORT=3005
 
-  ### client
+   **client ⚙️ .env**
  
  - API_URL_HIST_TRACKING_logs = 'http://localhost:3005/api/v1/jobsHistory/import-logs'
 
