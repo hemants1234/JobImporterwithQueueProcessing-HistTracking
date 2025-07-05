@@ -1,76 +1,68 @@
-# Architecture Overview
+✅ Project overview
 
-## Key Components
+⚙️ Setup instructions
 
-### 1. Data Fetching
-- Scheduled hourly job
-- Fetches from multiple RSS XML feeds
-- Converts to JSON
-- Adds to Redis job queue
+🏃‍♂️ Running dev servers (frontend + backend)
 
-### 2. Queue Processing
-- BullMQ worker
-- Inserts/Updates jobs in MongoDB
-- Records status (new, updated, failed)
+🧪 Testing (if applicable)
 
-### 3. History Logging
-- Import logs stored in `import_logs` collection
-- Tracks job stats per fetch run
+🌐 Deployment tips
 
-## Scalability
-- Jobs processed asynchronously
-- Workers can be horizontally scaled
-- Feed list is extensible
+📁 Project structure
 
-## Technologies
-- Backend: Express.js
-- Frontend: Next.js
-- Queue: BullMQ
-- DB: MongoDB
-- Queue store: Redis
+## 📘 Project Overview
 
-## Diagram
+**What it does:**  
+This app automatically fetches job listings from external XML/RSS feeds (e.g., Jobicy), queues them for background processing, and stores them in MongoDB.
 
-[Insert architecture diagram here via draw.io]
+**Why it matters:**  
+Manual import or one-time scripts don’t scale—especially with rotating feed content, duplicates, and failures to track. This system solves that with scheduled background jobs, deduplication, and detailed import logs.
 
-                       +------------------------+
-                       |   Scheduled Cron Job   |
-                       | (Every 1 Hour, Node)   |
-                       +----------+-------------+
-                                  |
-               +------------------v-------------------+
-               |       Job Fetcher Service            |
-               |  - Fetch XML from multiple APIs      |
-               |  - Convert XML → JSON                |
-               +----------------+---------------------+
-                                  |
-                                  v
-                        +---------+---------+
-                        |  Redis (BullMQ)   |
-                        |  Queue: job-import|
-                        +---------+---------+
-                                  |
-                                  v
-             +---------------------------------------+
-             |           Worker Processor            |
-             |  - Insert/update job in MongoDB       |
-             |  - Log job result (new/updated/failed)|
-             |                                       |
-             +----------------+----------------------+
-                                  |
-                                  v
-                +----------------+----------------+
-                |     MongoDB (2 collections)     |
-                |  - job.model                    |
-                |  - importLog.model              |
-                +----------------+----------------+
-                                  |
-                                  v
-                 +-------------------------------+
-                 |   Next.js  Dashboard          |
-                 |  - View Import History        |
-                 |  - Table of logs(success/fail)|
-                 +-------------------------------+
+**Key Features:**
+- Hourly cron job fetching XML feeds
+- Redis/BullMQ queue for scalable, concurrent processing
+- Insert-or-update logic in MongoDB with unique GUID deduplication
+- Import logs capturing counts of new, updated, and failed jobs
+- Next.js dashboard to view import history and error details
 
+**Tech Stack Overview:**
+| Layer     | Tech Stack    |
+|-----------|---------------|
+| Scheduler | node-cron     |
+| Queue     | Redis + BullMQ |
+| API       | Node.js + Express |
+| DB        | MongoDB + Mongoose |
+| Frontend  | Next.js       |
 
+**Usage Scenarios:**
+- Automatically import updated job feeds with minimal manual intervention
+- See at-a-glance statistics on import success/failures
+- Review and debug feed errors quickly via the dashboard
 
+**Scope:**  
+This version focuses on core import functionality, basic dashboard. Future improvements may include authentication, real-time updates, job search.
+
+## ⚙️ Setup Instructions
+
+**🛠 Prerequisites**
+
+Before running the project, ensure the following are installed on your system:-
+
+- Node.js (v16+)
+- npm or yarn
+- MongoDB (locally or via Atlas)
+- Redis (locally or via cloud service)
+
+**🚀 Clone the Repository**
+
+```bash
+git clone https://github.com/yourusername/job-importer.git
+cd job-importer
+```
+
+**Configure Environment Variables**
+  ### server
+  
+ - MONGODB_URI='mongodb://127.0.0.1:27017/jobs'
+ - CLIENT_URL='http://localhost:3000'
+ - PORT=3005
