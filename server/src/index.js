@@ -15,7 +15,7 @@ const server = http.createServer(app);
 
 const io = new Server(server, {
   cors: {
-    origin: 'http://localhost:3000',
+    origin: process.env.CLIENT_URL
   },
 });
 
@@ -31,9 +31,9 @@ initializeWorker(io);
   }
 })();
 
-const PORT = process.env.PORT || 3005;
-server.listen(PORT, async () => {
-  console.log(`Server running on port ${PORT}`);
+const PORTs = process.env.PORT || 3005
+server.listen(PORTs, async () => {
+  console.log(`Server running on port ${PORTs}`);
   try {
       await connectDb();
       console.log('✅ DB connected');  
